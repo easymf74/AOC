@@ -287,24 +287,8 @@ int main(int argc, char* argv[]){
   unsigned long long part1{};
   //std::ifstream input("res/05_example.txt");
   std::ifstream input("res/05_input.txt");
-  vvl seed_soil;
-  vvl soil_fertilizer;
-  vvl fertilizer_water;
-  vvl water_light;
-  vvl light_temperature;
-  vvl temperature_humidity;
-  vvl humidity_location;
   std::vector<unsigned int> seeds;
-  std::vector<vvl*> maps{
-    nullptr,
-    &seed_soil,
-    &soil_fertilizer,
-    &fertilizer_water,
-    &water_light,
-    &light_temperature,
-    &temperature_humidity,
-    &humidity_location
-  };
+  std::vector<vvl> maps{8, vvl{} };
   
   std::string line;
   unsigned int map_part{};
@@ -325,7 +309,7 @@ int main(int argc, char* argv[]){
 	  if(num.size()) nums.push_back(std::stoull(num));
 	  
 	  // create map
-	  maps[map_part]->push_back(nums);
+	  maps[map_part].push_back(nums);
 	}
       }else{
 	//seeds
@@ -348,7 +332,7 @@ int main(int argc, char* argv[]){
     std::vector<unsigned long long> ln{seed};
 
     for(unsigned i=1; i<maps.size();++i){
-      ln.push_back( dest(ln.back(),*maps[i]));
+      ln.push_back( dest(ln.back(),maps[i]));
     }
 
     if(!part1) part1 = ln.back();
@@ -363,13 +347,13 @@ int main(int argc, char* argv[]){
   std::set<Range> end_rgs;
   for(unsigned int i=0; i<seeds.size();i+=2){
     Range seed{seeds[i], seeds[i] + seeds[i + 1] - 1};
-    rgs = r_dest(seed, *maps[1]);
+    rgs = r_dest(seed, maps[1]);
     
     for (unsigned int n = 2; n < maps.size(); ++n) {
       std::vector<Range> n_rgs; 
       for(Range r : rgs){
 	std::vector<Range> got_n_rgs;
-	got_n_rgs = r_dest(r, *maps[n]);
+	got_n_rgs = r_dest(r, maps[n]);
 	for(Range nr : got_n_rgs) n_rgs.push_back(nr);
       } //for all Ranges
       rgs = n_rgs;
