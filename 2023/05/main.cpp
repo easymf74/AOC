@@ -207,8 +207,6 @@ Consider all of the initial seed numbers
 listed in the ranges on the first line of the almanac.
 What is the lowest location number that corresponds to any of the initial seed numbers?
 
-TODO: make it faster using ranges
-
  */
 
 #include <iostream>
