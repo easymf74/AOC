@@ -18,3 +18,6 @@ interceptions
 ### 05
 using rules to come from a seed to an minimal end. The
 interessting part is part 2, where **Ranges** are the solution.
+
+### 06
+test waiting for more speed leads to win 
