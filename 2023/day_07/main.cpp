@@ -227,7 +227,7 @@ public:
   Hand(const std::string& cards, unsigned int bid,bool part2=false)
     :cards{cards},bid{bid},part2{part2}{}
   bool operator<(const Hand& o) const{ return rank() < o.rank();}
-  unsigned int operator()(){return bid;}
+  unsigned int operator()() const{return bid;}
 private:
   std::string cards;
   unsigned int bid;
