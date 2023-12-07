@@ -278,10 +278,7 @@ unsigned long long pow(unsigned long v, unsigned int p){
 
 
 unsigned int Hand::rank() const{
-  // 5x;   4x;   3x+2y;  3x;   2x+2y;  2x; abcde
-
-  std::string card_strength = part2? "J123456789TQKA" : "123456789TJQKA";
-  
+  const std::string card_strength = part2? "J123456789TQKA" : "123456789TJQKA";
   enum {
     five_of_a_kind=6,
     four_of_a_kind=5,
