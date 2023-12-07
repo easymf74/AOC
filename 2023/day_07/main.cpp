@@ -292,12 +292,12 @@ unsigned int Hand::rank() const{
 
   
   enum {
-    five_of_a_kind=6000000,
-    four_of_a_kind=5000000,
-    full_house=4000000,
-    three_of_a_kind=3000000,
-    two_pair=2000000,
-    one_pair=1000000,
+    five_of_a_kind=6,
+    four_of_a_kind=5,
+    full_house=4,
+    three_of_a_kind=3,
+    two_pair=2,
+    one_pair=1,
   };
   
   unsigned int rank{};
@@ -323,12 +323,13 @@ unsigned int Hand::rank() const{
   std::map<unsigned int,unsigned int> count_repeats;
   for(auto counter : card_counter) ++count_repeats[counter.second];
 
-  if(count_repeats[5]) rank += five_of_a_kind;
-  else if (count_repeats[4]) rank += four_of_a_kind;
-  else if (count_repeats[3] && count_repeats[2]) rank+=full_house;
-  else if (count_repeats[3]) rank+=three_of_a_kind;
-  else if (count_repeats[2] == 2) rank+= two_pair;
-  else if (count_repeats[2]) rank+= one_pair;
+  unsigned long p = pow(14,5);
+  if(count_repeats[5]) rank += five_of_a_kind*p;
+  else if (count_repeats[4]) rank += four_of_a_kind*p;
+  else if (count_repeats[3] && count_repeats[2]) rank+=full_house*p;
+  else if (count_repeats[3]) rank+=three_of_a_kind*p;
+  else if (count_repeats[2] == 2) rank+= two_pair*p;
+  else if (count_repeats[2]) rank+= one_pair*p;
 
   return rank;
 }
