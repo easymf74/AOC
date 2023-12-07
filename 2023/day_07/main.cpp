@@ -316,8 +316,8 @@ unsigned int Hand::rank(bool part2) const{
         highest_count = counter.second;
 	best = counter.first;
       }
-    while(card_counter['J']--)
-      ++card_counter[best];
+    card_counter[best] += card_counter['J'];
+    card_counter['J'] = 0;
   }
   
   std::map<unsigned int,unsigned int> count_repeats;
