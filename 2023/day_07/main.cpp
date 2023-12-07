@@ -279,17 +279,8 @@ unsigned long long pow(unsigned long v, unsigned int p){
 
 unsigned int Hand::rank() const{
   // 5x;   4x;   3x+2y;  3x;   2x+2y;  2x; abcde
-  std::map<char,unsigned int>
-    card_strength{
-    {'1', 1},{'2', 2},{'3', 3},{'4', 4},{'5', 5},{'6', 6},{'7', 7},
-    {'8', 8},{'9', 9},{'T',10},{'J',11},{'Q',12},{'K',13},{'A',14}
-  };
-  if(part2)
-    card_strength = {
-      {'J', 1},{'1', 2},{'2', 3},{'3', 4},{'4', 5},{'5', 6},{'6', 7},
-      {'7', 8},{'8', 9},{'9',10},{'T',11},{'Q',12},{'K',13},{'A',14}
-    };
 
+  std::string card_strength = part2? "J123456789TQKA" : "123456789TJQKA";
   
   enum {
     five_of_a_kind=6,
@@ -304,7 +295,7 @@ unsigned int Hand::rank() const{
   std::map<char,unsigned int> card_counter;
   unsigned int pos = 5;
   for(char c : cards){
-    rank += pow(14,--pos) * card_strength[c];
+    rank += pow(14,--pos) * card_strength.find_first_of(c);
     ++card_counter[c];
   }
 
