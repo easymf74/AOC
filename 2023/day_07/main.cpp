@@ -305,9 +305,7 @@ unsigned int Hand::rank(bool part2) const{
   unsigned int pos = 5;
   for(char c : cards){
     rank += pow(14,--pos) * card_strength[c];
-
-    if(card_counter.count(c)) ++card_counter[c];
-    else card_counter[c] = 1;
+    ++card_counter[c];
   }
 
   if(part2 && card_counter.count('J')){
@@ -323,10 +321,7 @@ unsigned int Hand::rank(bool part2) const{
   }
   
   std::map<unsigned int,unsigned int> count_repeats;
-  for(auto counter : card_counter){
-    if(count_repeats.count(counter.second)) ++count_repeats[counter.second];
-    else count_repeats[counter.second] = 1;
-  }
+  for(auto counter : card_counter) ++count_repeats[counter.second];
 
   if(count_repeats[5]) rank += five_of_a_kind;
   else if (count_repeats[4]) rank += four_of_a_kind;
