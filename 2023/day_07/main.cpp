@@ -279,9 +279,6 @@ unsigned long long pow(unsigned long v, unsigned int p){
 
 unsigned int Hand::rank(bool part2) const{
   // 5x;   4x;   3x+2y;  3x;   2x+2y;  2x; abcde
-  // 3000  2500   2000   1500   1000  500   0
-  // 14*5; 14*4; 14*3;14*2;14*1
-  //  70    56    42   28   14  = max 210
   std::map<char,unsigned int>
     card_strength{
     {'1', 1},{'2', 2},{'3', 3},{'4', 4},{'5', 5},{'6', 6},{'7', 7},
@@ -340,39 +337,3 @@ unsigned int Hand::rank(bool part2) const{
 
   return rank;
 }
-
-/**
-15⁴ =   
-K 4 :: 253 | 253
-K 3 :: 133 | 386
-6 2 :: 66 | 452
-7 1 :: 37 | 489
-7 0 :: 22 | 511
-KK677 :> 2511
-K 4 :: 253 | 253
-T 3 :: 130 | 383
-J 2 :: 71 | 454
-J 1 :: 41 | 495
-T 0 :: 25 | 520
-KTJJT :> 2520
-
-
-A  1  1   1    1
-K  A  A   A    A
-210 84  42  28 14
-1:: 1-14   == card_strength      min= 1 max =  14
-2:: 15-28  == 14+card_strength   min=15 max =  28  42
-3:: 43-56  == 3*14+card_strength min=43 max =  56  98
-4:: 99-112 == 7*14+card_strength min=99 max = 112  210
-5::211-224 ==15*14+card_strength
-
-2^pos-1 16 8 4 2 1
-
-1  2  3  4   5
-0  1  3  7  15
-  +1 +2 +4  +8
-  2⁰ 2¹ 2²  2³
-  
-*/
-
-
