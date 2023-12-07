@@ -308,7 +308,7 @@ unsigned int Hand::rank(bool part2) const{
     ++card_counter[c];
   }
 
-  if(part2 && card_counter.count('J')){
+  if(part2 && card_counter['J']){
     unsigned int highest_count{};
     char best;
     for(auto counter : card_counter)
