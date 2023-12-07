@@ -311,13 +311,12 @@ unsigned int Hand::rank() const{
   std::map<unsigned int,unsigned int> count_repeats;
   for(auto counter : card_counter) ++count_repeats[counter.second];
 
-  unsigned long p = pow(14,5);
-  if(count_repeats[5]) rank += five_of_a_kind*p;
-  else if (count_repeats[4]) rank += four_of_a_kind*p;
-  else if (count_repeats[3] && count_repeats[2]) rank+=full_house*p;
-  else if (count_repeats[3]) rank+=three_of_a_kind*p;
-  else if (count_repeats[2] == 2) rank+= two_pair*p;
-  else if (count_repeats[2]) rank+= one_pair*p;
+  if(count_repeats[5]) rank += five_of_a_kind*pow(14,5);
+  else if (count_repeats[4]) rank += four_of_a_kind*pow(14,5);
+  else if (count_repeats[3] && count_repeats[2]) rank+=full_house*pow(14,5);
+  else if (count_repeats[3]) rank+=three_of_a_kind*pow(14,5);
+  else if (count_repeats[2] == 2) rank+= two_pair*pow(14,5);
+  else if (count_repeats[2]) rank+= one_pair*pow(14,5);
 
   return rank;
 }
