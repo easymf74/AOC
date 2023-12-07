@@ -224,8 +224,8 @@ What are the new total winnings?
 
 class Hand {
 public:
-  Hand(const std::string& cards, unsigned int bide,bool part2=false)
-    :cards{cards},bid{bide},part2{part2}{}
+  Hand(const std::string& cards, unsigned int bid,bool part2=false)
+    :cards{cards},bid{bid},part2{part2}{}
   bool operator<(const Hand& o) const{ return rank() < o.rank();}
   unsigned int operator()(){return bid;}
 private:
