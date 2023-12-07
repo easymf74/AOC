@@ -292,7 +292,7 @@ unsigned int Hand::rank() const{
   std::map<char,unsigned int> card_counter;
   unsigned int pos = 5;
   for(char c : cards){
-    rank += pow(14,--pos) * card_strength.find_first_of(c);
+    rank += pow(14,--pos) * card_strength.find(c);
     ++card_counter[c];
   }
 
