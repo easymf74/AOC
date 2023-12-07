@@ -226,12 +226,12 @@ class Hand {
 public:
   Hand(const std::string& cards, unsigned int bide,bool part2=false)
     :cards{cards},bid{bide},part2{part2}{}
-  bool operator<(const Hand& o) const{ return rank(part2) < o.rank(part2);}
+  bool operator<(const Hand& o) const{ return rank() < o.rank();}
   unsigned int operator()(){return bid;}
 private:
   std::string cards;
   unsigned int bid;
-  unsigned int rank(bool) const;
+  unsigned int rank() const;
   bool part2;
 };
 
@@ -277,7 +277,7 @@ unsigned long long pow(unsigned long v, unsigned int p){
 }
 
 
-unsigned int Hand::rank(bool part2) const{
+unsigned int Hand::rank() const{
   // 5x;   4x;   3x+2y;  3x;   2x+2y;  2x; abcde
   std::map<char,unsigned int>
     card_strength{
