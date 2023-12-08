@@ -168,7 +168,6 @@ int main(int argc, char* argv[]){
 
   unsigned long long steps{};
   char current_instruction{};
-  unsigned long part1;
 
   std::map<std::string,std::vector<unsigned long long>> steps_to_z;
   for(auto a : current_positions){
@@ -183,11 +182,7 @@ int main(int argc, char* argv[]){
 	    ? path[position].first
 	    : path[position].second;
 	} // end while position doesnt end with 'Z'
-        if (first_z != position) {
-          steps_to_z[a].push_back(steps);
-          if (a == "AAA" && position == "ZZZ")
-            part1 = steps;
-        }
+        if (first_z != position) steps_to_z[a].push_back(steps);
         if(!first_z.size()) first_z = position;
       } //end while not cycle
   } // end for each way
@@ -199,7 +194,7 @@ int main(int argc, char* argv[]){
       while(kgv%i) kgv+=mem;
     } 
 
-  std::cout << "part1: " << part1 << std::endl; //18023
+  std::cout << "part1: " << steps_to_z["AAA"][0] << std::endl; //18023
   std::cout << "part2: " << kgv << std::endl; //14449445933179
   
   return 0;
