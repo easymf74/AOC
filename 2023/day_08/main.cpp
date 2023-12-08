@@ -160,7 +160,7 @@ int main(int argc, char* argv[]){
     getline(input,line);
     if(line.size()){
       std::string key_pos = line.substr(0, 3);
-      path[key_pos] = {line.substr(7, 3), line.substr(12, 3)};  // part1
+      path[key_pos] = {line.substr(7, 3), line.substr(12, 3)};  
       if(key_pos[2]=='A') current_positions.push_back(key_pos); // part2
     }
   } // end reading
@@ -168,21 +168,8 @@ int main(int argc, char* argv[]){
 
   unsigned long long steps{};
   char current_instruction{};
+  unsigned long part1;
 
-  //begin part 1
-  std::string position{"AAA"};
-  while(position != "ZZZ"){
-    current_instruction = instructions[steps%instructions.size()];
-    position
-      = current_instruction == 'L'
-      ? path[position].first
-      : path[position].second;
-    ++steps;
-  };
-  unsigned int part1 = steps;
-  std::cout << "part1: " << part1 << std::endl; //18023
-
-  //part2
   std::map<std::string,std::vector<unsigned long long>> steps_to_z;
   for(auto a : current_positions){
       std::string first_z;
@@ -196,8 +183,12 @@ int main(int argc, char* argv[]){
 	    ? path[position].first
 	    : path[position].second;
 	} // end while position doesnt end with 'Z'
-	if(first_z != position) steps_to_z[a].push_back(steps);
-	if(!first_z.size()) first_z = position;
+        if (first_z != position) {
+          steps_to_z[a].push_back(steps);
+          if (a == "AAA" && position == "ZZZ")
+            part1 = steps;
+        }
+        if(!first_z.size()) first_z = position;
       } //end while not cycle
   } // end for each way
 
@@ -207,9 +198,9 @@ int main(int argc, char* argv[]){
       unsigned long long mem{kgv};
       while(kgv%i) kgv+=mem;
     } 
-  unsigned long part2 = kgv;
 
-  std::cout << "part2: " << part2 << std::endl; //14449445933179
+  std::cout << "part1: " << part1 << std::endl; //18023
+  std::cout << "part2: " << kgv << std::endl; //14449445933179
   
   return 0;
 }
