@@ -10,7 +10,9 @@
 | 04  | *    | using regex to seperate 2 sets of numbers and count the interceptions                         |
 | 05  | ***  | using rules to come from a seed to an end. part2 is interesting: **Ranges** are the solution. |
 | 06  |      | test waiting for more speed leads to win                                                      |
-| 07  | *    | card ranking / get repetitions of cards                                                                                               |
+| 07  | *    | card ranking / get repetitions of cards                                                       |
+| 08  | **   | count steps on a path, part2: **kgV** is the solution                                         |
+
 
 
 
