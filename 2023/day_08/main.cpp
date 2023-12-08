@@ -190,15 +190,15 @@ int main(int argc, char* argv[]){
       } //end while not cycle
   } // end for each way
 
-  unsigned long long kgv=1;
+  unsigned long long lcm=1;
   for (auto e : steps_to_z)
     for (unsigned long long i : e.second){
-      unsigned long long mem{kgv};
-      while(kgv%i) kgv+=mem;
+      unsigned long long mem{lcm};
+      while(lcm%i) lcm+=mem;
     } 
 
   std::cout << "part1: " << part1 << std::endl; //18023
-  std::cout << "part2: " << kgv << std::endl; //14449445933179
+  std::cout << "part2: " << lcm << std::endl; //14449445933179
   
   return 0;
 }
