@@ -218,11 +218,12 @@ int main(int argc, char* argv[]){
     }while(sum); // end while not all 0
 
     for (unsigned ds = to_zero_differences.size() - 1; ds; --ds) {
-      to_zero_differences[ds - 1].push_back(
-	to_zero_differences[ds - 1].back()
-	+ to_zero_differences[ds].back());
+      to_zero_differences  [ds-1].push_back(
+	to_zero_differences[ds-1].back()
+	+ to_zero_differences[ds].back()
+	);
       
-      to_zero_differences[ds - 1].push_front(
+      to_zero_differences  [ds-1].push_front(
 	to_zero_differences[ds-1].front()
 	- to_zero_differences[ds].front()
 	);
