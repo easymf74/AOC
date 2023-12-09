@@ -209,8 +209,8 @@ int main(int argc, char* argv[]){
     do{
       sum=0;
       std::deque<long> differences;
-      for (unsigned int i = 0; i < h.size() - 1; ++i) {
-        differences.push_back(h[i+1] - h[i]);
+      for (unsigned int i = 1; i < h.size(); ++i) {
+        differences.push_back(h[i] - h[i-1]);
 	sum+=differences.back();
       }
       to_zero_differences.push_back(differences);
