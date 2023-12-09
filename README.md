@@ -11,7 +11,9 @@
 | 05  | ***  | using rules to come from a seed to an end. part2 is interesting: **Ranges** are the solution. |
 | 06  |      | test waiting for more speed leads to win                                                      |
 | 07  | *    | card ranking / get repetitions of cards                                                       |
-| 08  | **   | count steps on a path, part2: **lcm** (German:kgV) is the solution                                         |
+| 08  | **   | count steps on a path, part2: **lcm** (German:kgV) is the solution                            |
+| 09  |      | extrapolate a sequence of numbers                                                             |
+
 
 
 
