@@ -205,17 +205,16 @@ int main(int argc, char* argv[]){
   long long sum_of_extrapolated_values{},sum_of_extrapolated_values_before{};
   for(std::deque<long> h : histories){
     std::vector<std::deque<long>> to_zero_differences{h};
-    std::deque<long> h2 = h;
     long long sum;
     do{
       sum=0;
       std::deque<long> differences;
-      for (unsigned int i = 0; i < h2.size() - 1; ++i) {
-        differences.push_back(h2[i+1] - h2[i]);
+      for (unsigned int i = 0; i < h.size() - 1; ++i) {
+        differences.push_back(h[i+1] - h[i]);
 	sum+=differences.back();
       }
       to_zero_differences.push_back(differences);
-      h2 = differences;
+      h = differences;
     }while(sum); // end while not all 0
 
     for (unsigned ds = to_zero_differences.size() - 1; ds; --ds) {
