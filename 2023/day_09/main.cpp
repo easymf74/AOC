@@ -188,20 +188,15 @@ int main(int argc, char* argv[]){
     if(line.size()){
       std::string num;
       std::deque<long> history;
-      int sign{1};
       for(char c : line){
-	if(c >= '0' && c<='9'){
+	if( (c >= '0' && c<='9') || c=='-' )
 	  num+=c;
-	}else if(c=='-'){
-	  sign=-1;
-	}else{
-	  if(num.size()) history.push_back(std::stol(num) * sign);
+	else{
+	  if(num.size()) history.push_back( std::stol(num) );
 	  num.clear();
-	  sign = 1;
 	}
       }// end for each char in line
-      if (num.size()) 
-        history.push_back(std::stol(num) * sign);
+      if (num.size()) history.push_back( std::stol(num) );
       histories.push_back(history);
     } // end no empty line
   }// end reading
@@ -224,8 +219,9 @@ int main(int argc, char* argv[]){
     }// end while not all 0
 
     for (unsigned ds = to_zero_differences.size() - 1; ds; --ds) {
-      to_zero_differences[ds - 1].push_back(to_zero_differences[ds - 1].back() +
-                                            to_zero_differences[ds].back());
+      to_zero_differences[ds - 1].push_back(
+	to_zero_differences[ds - 1].back()
+	+ to_zero_differences[ds].back());
       
       to_zero_differences[ds - 1].push_front(
 	to_zero_differences[ds-1].front()
