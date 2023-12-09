@@ -192,11 +192,11 @@ int main(int argc, char* argv[]){
 	if( (c >= '0' && c<='9') || c=='-' )
 	  num+=c;
 	else{
-	  if(num.size()) history.push_back( std::stol(num) );
+	  history.push_back( std::stol(num) );
 	  num.clear();
 	}
       }// end for each char in line
-      if (num.size()) history.push_back( std::stol(num) );
+      history.push_back( std::stol(num) );
       histories.push_back(history);
     } // end no empty line
   }// end reading
