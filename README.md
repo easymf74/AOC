@@ -13,8 +13,11 @@
 | 07  | *    | card ranking / get repetitions of cards                                                       |
 | 08  | **   | count steps on a path, part2: **lcm** (German:kgV) is the solution                            |
 | 09  |      | extrapolate a sequence of numbers                                                             |
+|-----|------|-----------------------------------------------------------------------------------------------|
 | 10  | **!  | Follow pipes; part2: find the number of from the cycle enclosed points (problem with set?)    |
 |     |      | https://en.wikipedia.org/wiki/Point_in_polygon                                                |
+|-----|------|-----------------------------------------------------------------------------------------------|
+
 
 
 
