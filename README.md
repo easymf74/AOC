@@ -15,6 +15,8 @@
 | 09    |      | extrapolate a sequence of numbers                                                                |
 | 10(1) | **!  | Follow pipes (problem with set?)                                                                 |
 | 10(2) | ***  | find the number of from the cycle enclosed points https://en.wikipedia.org/wiki/Point_in_polygon |
+| 11    | *    | distance of points in a 2-dimensional field                                                      |
+
 
 
 
