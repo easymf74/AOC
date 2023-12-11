@@ -308,12 +308,7 @@ struct Position{
   Position operator-(const Position& o) const {return {row-o.row,col-o.col};}
   bool operator==(const Position& o) const{return row==o.row && col == o.col;}
   bool operator!=(const Position& o) const{return !(*this == o);}
-  bool operator<(const Position& o) const{
-    bool less = false;
-    if(row < o.row) less = true;
-    else if (col < o.col ) less = true;
-    return less;
-  }
+  bool operator<(const Position& o) const{return row<o.row?true:col<o.col;}
 };
 
 std::vector<Position> get_connectors(
@@ -330,7 +325,7 @@ int main(int argc, char* argv[]){
   std::ifstream input("res/10_input.txt");
   Position start;
  
-  unsigned long s_row{},s_col{};
+  unsigned long s_col{};
   while(input.good()){
     std::string line;
     std::getline(input, line);
@@ -339,7 +334,6 @@ int main(int argc, char* argv[]){
       puzzle.push_back(line);
       if( ( (s_col = line.find('S')) != std::string::npos) )
 	start = { puzzle.size()-1, s_col};
-      ++s_row;
     }// end no empty line
   }// end reading
   input.close();
@@ -349,19 +343,16 @@ int main(int argc, char* argv[]){
   unsigned long long max_steps{};
   std::vector<unsigned long> counts{0};
   std::set<Position> last_positions{start};
-  std::vector<std::set<Position>> last_positions_mem{last_positions};
   std::vector<std::vector<Position>>
     ways{get_connectors(puzzle,start,last_positions)};
   std::vector<std::string> match{puzzle};
   match[start.row][start.col] ='X';
   std::vector<Position> connectors;
-  //while(ways.size()){
+  while(ways.size()){
     connectors = ways.back();
     unsigned long steps{counts.back()};
-    last_positions = last_positions_mem.back();
     ways.pop_back();
     counts.pop_back();
-    last_positions_mem.pop_back();
     do {
       current_position = connectors.back();
 
@@ -375,7 +366,6 @@ int main(int argc, char* argv[]){
       if(connectors.size()) {
 	ways.push_back(connectors);
 	counts.push_back(steps);
-	last_positions_mem.push_back(last_positions);
       }
       ++steps;
       last_positions.insert(current_position); 
@@ -384,20 +374,17 @@ int main(int argc, char* argv[]){
 
     
     if(steps>max_steps) max_steps = steps;
-    //} // end while ways
+    } // end while ways
 
     unsigned long enclosed{};
     for (std::string s : match) {
       unsigned int count_raute{};
-      for (char& c : s) {
+      for (char c : s) {
         if (c == '#') 
           ++count_raute;
-        else if (c !='X' && count_raute % 2) {
+        else if (c !='X' && count_raute % 2) 
           ++enclosed;
-	  c = 'I';
-        }
       }// end for each char in line
-
     } // end for each line
 
     std::cout << "part1: " << (max_steps/2 + max_steps%2)<< std::endl; //6831
