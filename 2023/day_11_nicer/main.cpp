@@ -23,18 +23,18 @@ public:
   Universe expand(unsigned long factor){
     Universe expanded_universe{*this};
     std::set<unsigned long> xs,ys;
-    for(Position g : expanded_universe.galaxies){
+    for(Position& g : expanded_universe.galaxies){
       xs.insert(g.get_x());
       ys.insert(g.get_y());
     }
     //expand rows
-    for(unsigned long i=*xs.rbegin();i>*xs.begin();--i)
+    for(unsigned long i=*xs.rbegin()-1;i>*xs.begin();--i)
       if(!xs.count(i))
 	for(Position& g : expanded_universe.galaxies)
 	  if(g.get_x()>i) g+={factor-1,0};
 
     //expand cols
-    for(unsigned long i=*ys.rbegin();i>*ys.begin();--i)
+    for(unsigned long i=*ys.rbegin()-1;i>*ys.begin();--i)
       if(!ys.count(i))
 	for(Position& g : expanded_universe.galaxies)
 	  if(g.get_y()>i) g+={0,factor-1};
